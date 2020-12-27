@@ -1,0 +1,47 @@
+CREATE TABLE teacher (
+ teacher_id  INT PRIMARY KEY,
+ teacher_name    VARCHAR(50),
+ teacher_surname VARCHAR(50),
+ teacher_subject VARCHAR(50),
+ teachet_gender  Varchar(10)
+);
+
+CREATE TABLE student(
+ student_id  INT PRIMARY KEY,
+ student_name    VARCHAR(50),
+ student_surname VARCHAR(50),
+ student_class   INT,
+ student_gender  Varchar(10)
+);
+
+CREATE TABLE student_teacher(
+   student_id INT NOT NULL,
+   teacher_id INT NOT NULL
+
+);
+
+INSERT INTO teacher VALUES
+(1,'ana','janjgava','geografia','qali'),
+(2,'mamuka','feiqrishvili','fizika','kaci'),
+(3,'tengiz','dolidze','istoria','kaci'),
+(4,'ana','kvirikashvili','kalkulusi','qali')
+
+INSERT INTO student VALUES
+(1,'giorgi','dolidze',9,'bichi'),
+(2,'dato','kvirikashvili',10,'bichi'),
+(3,'ana','nozadze',11,'gogo'),
+(4,'nini','qantaria',8,'gogo')
+
+INSERT INTO student_teacher VALUES
+(1,1),
+(1,3),
+(2,3),
+(3,2),
+(4,4)
+
+SELECT *
+FROM teacher
+INNER JOIN student_teacher ON(student_teacher.teacher_id=teacher.teacher_id)
+INNER JOIN student ON (student_teacher.student_id=student.student_id)
+WHERE student.student_name='giorgi'
+
